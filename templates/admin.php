@@ -1,0 +1,1 @@
+<h1>My super plugin</h1>
