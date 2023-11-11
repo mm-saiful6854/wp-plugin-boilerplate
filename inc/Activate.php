@@ -2,7 +2,7 @@
 /**
  * @package  MySuperPluginName
  */
-namespace Inc;
+
 
 class Activate
 {
