@@ -1,21 +1,32 @@
 <?php
+
 /**
  * @package  MySuperPluginName
  */
-require_once PLUGIN_PATH .'inc/Pages/Admin.php';
-require_once PLUGIN_PATH .'inc/Base/Enqueue.php';
+require_once PLUGIN_PATH . 'inc/Pages/Admin.php';
+require_once PLUGIN_PATH . 'inc/Base/Enqueue.php';
+require_once PLUGIN_PATH . 'inc/Base/SettingsLinks.php';
 
 final class Init
 {
+	// public : can be accessed everywhere
+
+	// private : can be accessed only within the class itself.
+
+	// protected : can be accessed only within the class itself and its subclass
+
+
+
 	/**
 	 * Store all the classes inside an array
 	 * @return array Full list of classes
 	 */
-	public static function get_services() 
+	public static function get_services()
 	{
 		return [
 			Admin::class,
-			Enqueue::class
+			Enqueue::class,
+			SettingsLinks::class
 		];
 	}
 
@@ -24,11 +35,11 @@ final class Init
 	 * and call the register() method if it exists
 	 * @return
 	 */
-	public static function register_services() 
+	public static function register_services()
 	{
-		foreach ( self::get_services() as $class ) {
-			$service = self::instantiate( $class );
-			if ( method_exists( $service, 'register' ) ) {
+		foreach (self::get_services() as $class) {
+			$service = self::instantiate($class);
+			if (method_exists($service, 'register')) {
 				$service->register();
 			}
 		}
@@ -39,7 +50,7 @@ final class Init
 	 * @param  class $class    class from the services array
 	 * @return class instance  new instance of the class
 	 */
-	private static function instantiate( $class )
+	private static function instantiate($class)
 	{
 		$service = new $class();
 
